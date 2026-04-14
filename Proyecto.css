@@ -96,15 +96,42 @@
             transform: rotate(90deg);
         }
 
-        .estrella-llena {
-            color: #f1c40f;
+        .rating-estatico {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: sans-serif;
         }
 
-        
-        .estrella-vacia {
+        .estrellas-base {
+            position: relative;
+            font-size: 2rem;
             color: #ccc;
+            /* Color gris de fondo */
         }
 
-        h4, p{display: inline;}
+        /* Dibujamos las 5 estrellas vacías */
+        .estrellas-base::before {
+            content: "★★★★★";
+        }
 
-        
+        /* Dibujamos las estrellas llenas encima usando la variable */
+        .estrellas-base::after {
+            content: "★★★★★";
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ffcc00;
+            overflow: hidden;
+            width: calc((var(--rating) / 10) * 100%);
+        }
+
+        .rating-text {
+            font-weight: bold;
+            color: #333;
+        }
+
+        h4,
+        p {
+            display: inline;
+        }
