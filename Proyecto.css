@@ -29,17 +29,20 @@
 
         img {
             height: 300px;
-            width: 300px;
-            object-fit: contain;
+            width: 200px;
+            object-fit: fill;
+            object-position: center;
             flex-shrink: 0;
         }
 
         .pelicula-item {
             display: flex;
             flex-direction: row;
-            align-items: stretch;
-            width: 100%;
+            align-items: center;
             width: 900px;
+            max-width: 100%;
+            height: 300px;
+            overflow: hidden;
         }
 
         .info-pelicula {
@@ -49,8 +52,10 @@
             border-radius: 0 8px 8px 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             gap: 10px;
+            height: 100%;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
 
         .info-pelicula h2 {
@@ -72,9 +77,11 @@
             border-radius: 0 0 8px 8px;
             box-sizing: border-box;
             flex-grow: 1;
+            padding: 5px;
         }
 
         summary {
+            padding: 5px;
             cursor: pointer;
             font-weight: bold;
             list-style: none;
@@ -107,15 +114,11 @@
             position: relative;
             font-size: 2rem;
             color: #ccc;
-            /* Color gris de fondo */
         }
 
-        /* Dibujamos las 5 estrellas vacías */
         .estrellas-base::before {
             content: "★★★★★";
         }
-
-        /* Dibujamos las estrellas llenas encima usando la variable */
         .estrellas-base::after {
             content: "★★★★★";
             position: absolute;

@@ -5,85 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarea 2.1</title>
-<head>
 
-    <title>Mi Selección de Películas</title>
-    <style>
-        .container {
-            margin: 5vh auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90%;
-        }
+    <head>
 
-        .search-container {
-            width: 100%;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-        }
+        <title>Mi Selección de Películas</title>
+        <style>
+            .container {
+                margin: 5vh auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+            }
 
-        #movieSearch {
-            width: 100%;
-            max-width: 400px;
-            padding: 12px 20px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            transition: border-color 0.3s;
-            font-size: 1em;
-        }
+            .search-container {
+                width: 100%;
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: center;
+            }
 
-        #movieSearch:focus {
-            border-color: #007bff;
-        }
+            #movieSearch {
+                width: 100%;
+                max-width: 400px;
+                padding: 12px 20px;
+                border: 2px solid #ddd;
+                border-radius: 25px;
+                outline: none;
+                transition: border-color 0.3s;
+                font-size: 1em;
+            }
 
-        #movieList {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-        }
+            #movieSearch:focus {
+                border-color: #007bff;
+            }
 
-        .pelicula-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 250px;
-        }
+            #movieList {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                width: 100%;
+            }
 
-        img {
-            height: 350px;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
+            .pelicula-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 250px;
+            }
 
-        details {
-            width: 100%;
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 0 0 8px 8px;
-            box-sizing: border-box;
-            flex-grow: 1;
-        }
+            img {
+                height: 350px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 8px 8px 0 0;
+            }
 
-        summary {
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
+            details {
+                width: 100%;
+                background: #f4f4f4;
+                padding: 10px;
+                border-radius: 0 0 8px 8px;
+                box-sizing: border-box;
+                flex-grow: 1;
+            }
 
-        p {
-            margin-top: 10px;
-            font-size: 0.85em;
-            text-align: justify;
-            line-height: 1.4;
-        }
-    </style>
-</head>
+            summary {
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 0.9em;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size: 0.85em;
+                text-align: justify;
+                line-height: 1.4;
+            }
+        </style>
+    </head>
 
 <body>
 
@@ -115,7 +116,7 @@
             </div>
 
             <div class="pelicula-item">
-                <img src="turning-red.jpg" alt="Turning Red">
+                <a href="Proyecto.html#turning_red"><img src="imagenes/turning-red.jpg" alt="Turning Red"></a>
                 <details>
                     <summary>3. Red (Turning Red)</summary>
                     <p>Mei Lee, una niña de 13 años, se convierte en un panda rojo gigante cuando se emociona demasiado.
