@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2.1</title>
+<head>
+
+    <title>Mi Selección de Películas</title>
+    <style>
+        .container {
+            margin: 5vh auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+        }
+
+        .search-container {
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #movieSearch {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s;
+            font-size: 1em;
+        }
+
+        #movieSearch:focus {
+            border-color: #007bff;
+        }
+
+        #movieList {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .pelicula-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+        }
+
+        img {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        details {
+            width: 100%;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 0 0 8px 8px;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 0.85em;
+            text-align: justify;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Mi Selección de Películas</h2>
+
+        <div class="search-container">
+            <input type="text" id="movieSearch" placeholder="Buscar película o tema..." onkeyup="filterMovies()">
+        </div>
+
+        <section id="movieList">
+
+            <div class="pelicula-item">
+                <img src="Origenes.jpg" alt="I Origins">
+                <details>
+                    <summary>1. Orígenes (I Origins)</summary>
+                    <p>Un biólogo molecular y su compañera descubren evidencias que podrían cambiar la forma en que el
+                        mundo percibe la espiritualidad y la ciencia.</p>
+                </details>
+            </div>
+
+            <div class="pelicula-item">
+                <img src="F&F.jpg" alt="Fast & Furious">
+                <details>
+                    <summary>2. Fast & Furious</summary>
+                    <p>Saga centrada en carreras callejeras, espionaje y el valor de la familia, liderada por Dominic
+                        Toretto.</p>
+                </details>
+            </div>
+
+            <div class="pelicula-item">
+                <img src="turning-red.jpg" alt="Turning Red">
+                <details>
+                    <summary>3. Red (Turning Red)</summary>
+                    <p>Mei Lee, una niña de 13 años, se convierte en un panda rojo gigante cuando se emociona demasiado.
+                    </p>
+                </details>
+            </div>
+
+            <div class="pelicula-item">
+                <img src="Frankenstein.jpg" alt="Frankenstein">
+                <details>
+                    <summary>4. Frankenstein</summary>
+                    <p>El científico Victor Frankenstein logra dar vida a una criatura creada a partir de restos
+                        humanos.</p>
+                </details>
+            </div>
+
+            <div class="pelicula-item">
+                <img src="La_asistenta.jpg" alt="The Housemaid">
+                <details>
+                    <summary>5. La Asistenta (The Housemaid)</summary>
+                    <p>Thriller psicológico donde una mujer descubre secretos peligrosos al trabajar para una familia
+                        rica.</p>
+                </details>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function filterMovies() {
+            const input = document.getElementById('movieSearch');
+            const filter = input.value.toLowerCase();
+            const movieItems = document.querySelectorAll('.pelicula-item');
+
+            movieItems.forEach(item => {
+                const title = item.querySelector('summary').innerText.toLowerCase();
+                const description = item.querySelector('p').innerText.toLowerCase();
+
+                // Si coincide el título o la descripción
+                if (title.includes(filter) || description.includes(filter)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
