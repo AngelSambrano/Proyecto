@@ -1,18 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const jsonTexto = document.getElementById('datos-peliculas').textContent;
-    const peliculas = JSON.parse(jsonTexto);
-    const container = document.getElementById('movieList');
+    // 1. Leer el JSON desde el bloque de script (evita bloqueos de seguridad local)
+    const datosElemento = document.getElementById('datos-peliculas');
+    if (!datosElemento) return;
 
+    const peliculas = JSON.parse(datosElemento.textContent);
+    const lista = document.getElementById('movieList');
+
+    // 2. Generar las tarjetas
     peliculas.forEach((peli, index) => {
-        // Extraemos el número de la puntuación (ej: "7.5" de "(7.5)")
+        // Extraer nota numérica del string "★★★★ (7.5)"
         const match = peli.puntuacion.match(/\(([^)]+)\)/);
-        const notaNumerica = match ? match[1] : 0;
+        const nota = match ? match[1] : "0";
 
-        const movieCard = document.createElement('div');
-        movieCard.className = 'pelicula-item';
+        const card = document.createElement('div');
+        card.className = 'pelicula-item';
 
-        movieCard.innerHTML = `
-            <img src="${peli.imagen}" alt="${peli.titulo}">
+        card.innerHTML = `
+            <img src="${rutaImagen}" 
+                 alt="${peli.titulo}" 
+                 class="peli-img"
+                 onerror="this.src='https://via.placeholder.com/220x320?text=Error+en+Ruta'">
+            
             <div class="info-pelicula">
                 <h2>${index + 1}. ${peli.titulo}</h2>
                 
@@ -23,19 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <details>
                     <summary>Información</summary>
-                    <h4>Año:</h4> <p>${peli.año}</p><br>
-                    <h4>Duración:</h4> <p>${peli.duracion}</p><br>
-                    <h4>País:</h4> <p>${peli.pais}</p><br>
-                    <h4>Dirección:</h4> <p>${peli.direccion}</p><br>
-                    <h4>Género:</h4> <p>${peli.genero}</p>
+                    <div class="detalles-tecnicos">
+                        <p><strong>Año:</strong> ${peli.año}</p>
+                        <p><strong>Duración:</strong> ${peli.duracion}</p>
+                        <p><strong>País:</strong> ${peli.pais}</p>
+                        <p><strong>Dirección:</strong> ${peli.direccion}</p>
+                        <p><strong>Género:</strong> ${peli.genero}</p>
+                    </div>
                 </details>
 
-                <div class="rating-estatico" style="--rating: ${notaNumerica};">
+                <div class="rating-estatico" style="--rating: ${nota};">
                     <span class="estrellas-base"></span>
-                    <span class="rating-text">${notaNumerica}/10</span>
+                    <span class="rating-text">${nota}/10</span>
                 </div>
             </div>
         `;
-        container.appendChild(movieCard);
+        lista.appendChild(card);
     });
 });
