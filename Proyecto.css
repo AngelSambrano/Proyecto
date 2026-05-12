@@ -1,140 +1,164 @@
-        body {
-            padding: 0;
-            margin: 0;
-        }
+:root {
+    --primary: #98b0ff;
+    --star-gold: #ffcc00;
+    --star-grey: #ccc;
+}
 
-        .container {
-            margin: 5vh auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90%;
-            border: 2px solid black;
-        }
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #383838;
+}
 
-        header {
-            width: 100%;
-            height: auto;
-            border: solid 2px black;
-            display: flex;
-            flex-flow: row;
-            align-items: center;
-            justify-content: center;
-        }
+header {
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    padding: 10px 0;
+}
 
-        header img {
-            object-fit: contain;
-            height: auto !important;
-        }
+header img {
+    height: 80px;
+    object-fit: contain;
+}
 
-        img {
-            height: 300px;
-            width: 200px;
-            object-fit: fill;
-            object-position: center;
-            flex-shrink: 0;
-        }
+.container {
+    margin: 20px auto;
+    width: 95%;
+    max-width: 1000px;
+    
+}
 
-        .pelicula-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            width: 900px;
-            max-width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
+#movieList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    
+}
 
-        .info-pelicula {
-            background: #f4f4f4;
-            padding: 15px;
-            flex-grow: 1;
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            height: 100%;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
+/* TARJETA PRINCIPAL */
+.pelicula-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 320px; /* Altura fija */
+    background: white;
+    border: 1px solid #000;
+    overflow: hidden; /* Evita que el contenido se salga de la tarjeta */
+    border-radius: 12px 12px;
+}
 
-        .info-pelicula h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
+.pelicula-item img {
+    width: 220px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 
-        #movieList {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-        }
+/* CONTENEDOR DE TEXTO CON SCROLL */
+.info-pelicula {
+    background: #f4f4f4;
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto; /* ACTIVA EL SCROLL AQUÍ */
+}
 
-        details {
-            width: 100%;
-            background-color: #98b0ff;
-            border-radius: 0 0 8px 8px;
-            box-sizing: border-box;
-            flex-grow: 1;
-            padding: 5px;
-        }
+.info-pelicula h2 {
+    margin: 0;
+    font-size: 1.4rem;
+}
 
-        summary {
-            padding: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            list-style: none;
-            outline: none;
-        }
+/* DETALLES Y ACORDEONES */
+details {
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
 
+summary {
+    padding: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none;
+}
 
-        summary::before {
-            content: "›";
-            font-size: 20px;
-            margin-right: 8px;
-            display: inline-block;
-            transition: transform 0.25s ease;
-            color: #555;
-        }
+summary::before {
+    content: "▶ ";
+    font-size: 0.8rem;
+}
 
+details[open] summary::before {
+    content: "▼ ";
+}
 
-        details[open] summary::before {
-            transform: rotate(90deg);
-        }
+/* Contenido interno de los details */
+details p {
+    background: white;
+    padding: 10px;
+    margin: 0;
+    display: block; /* Asegura que ocupe espacio para el scroll */
+}
 
-        .rating-estatico {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: sans-serif;
-        }
+h4 {
+    margin: 5px 0;
+    color: #333;
+}
 
-        .estrellas-base {
-            position: relative;
-            font-size: 2rem;
-            color: #ccc;
-        }
+/* ESTRELLAS */
+.rating-estatico {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto; /* Lo mantiene al final de la info */
+    padding-top: 10px;
+}
 
-        .estrellas-base::before {
-            content: "★★★★★";
-        }
-        .estrellas-base::after {
-            content: "★★★★★";
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #ffcc00;
-            overflow: hidden;
-            width: calc((var(--rating) / 10) * 100%);
-        }
+.estrellas-base {
+    position: relative;
+    font-size: 1.5rem;
+    color: var(--star-grey);
+    display: inline-block;
+}
 
-        .rating-text {
-            font-weight: bold;
-            color: #333;
-        }
+.estrellas-base::before {
+    content: "★★★★★";
+}
 
-        h4,
-        p {
-            display: inline;
-        }
+.estrellas-base::after {
+    content: "★★★★★";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--star-gold);
+    overflow: hidden;
+    width: calc((var(--rating) / 10) * 100%);
+}
+
+.rating-text {
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .pelicula-item {
+        flex-direction: column;
+        height: auto;
+    }
+    .pelicula-item img {
+        width: 100%;
+        height: 300px;
+    }
+    .info-pelicula {
+        height: 400px; /* Altura fija en móvil para mantener el scroll */
+    }
+}
