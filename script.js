@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'pelicula-item';
 
         card.innerHTML = `
-            <img src="${peli.imagen}" 
-                 alt="${peli.titulo}">
+            <img src="${rutaImagen}" 
+                 alt="${peli.titulo}" 
+                 class="peli-img"
+                 onerror="this.src='https://via.placeholder.com/220x320?text=Error+en+Ruta'">
             
             <div class="info-pelicula">
                 <h2>${index + 1}. ${peli.titulo}</h2>
