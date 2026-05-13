@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Leer el JSON desde el bloque de script (evita bloqueos de seguridad local)
     const datosElemento = document.getElementById('datos-peliculas');
     if (!datosElemento) return;
 
@@ -8,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Generar las tarjetas
     peliculas.forEach((peli, index) => {
-        // Extraer nota numérica del string "★★★★ (7.5)"
         const match = peli.puntuacion.match(/\(([^)]+)\)/);
         const nota = match ? match[1] : "0";
 
@@ -16,10 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'pelicula-item';
 
         card.innerHTML = `
-            <img src="${rutaImagen}" 
+            <img src="${peli.imagen}" 
                  alt="${peli.titulo}" 
-                 class="peli-img"
-                 onerror="this.src='https://via.placeholder.com/220x320?text=Error+en+Ruta'">
+                 class="peli-img">
             
             <div class="info-pelicula">
                 <h2>${index + 1}. ${peli.titulo}</h2>
