@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarea 2.1</title>
+    <title>Cata Movie</title>
 
     <head>
 
@@ -23,19 +23,15 @@
                 margin: 0;
                 display: flex;
                 flex-direction: column;
-                /* Organiza header y carrusel verticalmente */
                 justify-content: center;
-                /* Centra el carrusel verticalmente */
                 align-items: center;
                 min-height: 100vh;
                 overflow: hidden;
                 font-family: sans-serif;
             }
 
-            /* HEADER: Pegado arriba */
             header {
                 position: fixed;
-                /* Lo fija a la ventana */
                 top: 0;
                 left: 0;
                 width: 100%;
@@ -45,25 +41,24 @@
                 border-bottom: 2px solid black;
                 padding: 10px 0;
                 z-index: 100;
-                /* Asegura que esté por encima de las imágenes al pasar el carrusel */
             }
 
             header img {
                 height: 60px;
-                /* Ajustado ligeramente para que no ocupe demasiado */
                 object-fit: contain;
             }
 
-            /* CARRUSEL: Centrado */
+  
             .carousel-viewport {
                 width: 100%;
                 overflow: hidden;
                 padding: 50px 0;
-                /* Máscara para bordes suaves */
-                mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                
+
                 -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
                 margin-top: 80px;
-                /* Evita que el header tape el carrusel en pantallas pequeñas */
+                
             }
 
             .carousel-track {
