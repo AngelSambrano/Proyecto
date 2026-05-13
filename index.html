@@ -8,162 +8,133 @@
 
     <head>
 
-        <title>Mi Selección de Películas</title>
         <style>
-            .container {
-                margin: 5vh auto;
+            :root {
+                --bg-color: #0a0a0a;
+                --card-width: 250px;
+                --card-height: 380px;
+                --gap: 20px;
+                --total-cards: 5;
+                --duration: 20s;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                margin: 0;
                 display: flex;
                 flex-direction: column;
+                /* Organiza header y carrusel verticalmente */
+                justify-content: center;
+                /* Centra el carrusel verticalmente */
                 align-items: center;
-                width: 90%;
+                min-height: 100vh;
+                overflow: hidden;
+                font-family: sans-serif;
             }
 
-            .search-container {
+            /* HEADER: Pegado arriba */
+            header {
+                position: fixed;
+                /* Lo fija a la ventana */
+                top: 0;
+                left: 0;
                 width: 100%;
-                margin-bottom: 30px;
+                background: white;
                 display: flex;
                 justify-content: center;
+                border-bottom: 2px solid black;
+                padding: 10px 0;
+                z-index: 100;
+                /* Asegura que esté por encima de las imágenes al pasar el carrusel */
             }
 
-            #movieSearch {
+            header img {
+                height: 60px;
+                /* Ajustado ligeramente para que no ocupe demasiado */
+                object-fit: contain;
+            }
+
+            /* CARRUSEL: Centrado */
+            .carousel-viewport {
                 width: 100%;
-                max-width: 400px;
-                padding: 12px 20px;
-                border: 2px solid #ddd;
-                border-radius: 25px;
-                outline: none;
-                transition: border-color 0.3s;
-                font-size: 1em;
+                overflow: hidden;
+                padding: 50px 0;
+                /* Máscara para bordes suaves */
+                mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+                margin-top: 80px;
+                /* Evita que el header tape el carrusel en pantallas pequeñas */
             }
 
-            #movieSearch:focus {
-                border-color: #007bff;
-            }
-
-            #movieList {
+            .carousel-track {
                 display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                width: 100%;
+                width: calc((var(--card-width) + var(--gap)) * (var(--total-cards) * 2));
+                animation: scroll var(--duration) linear infinite;
             }
 
-            .pelicula-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 250px;
+            .carousel-track:hover {
+                animation-play-state: paused;
             }
 
-            img {
-                height: 350px;
-                width: 100%;
-                object-fit: cover;
-                border-radius: 8px 8px 0 0;
-            }
-
-            details {
-                width: 100%;
-                background: #f4f4f4;
-                padding: 10px;
-                border-radius: 0 0 8px 8px;
-                box-sizing: border-box;
-                flex-grow: 1;
-            }
-
-            summary {
+            .card {
+                width: var(--card-width);
+                height: var(--card-height);
+                margin-right: var(--gap);
+                flex-shrink: 0;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
                 cursor: pointer;
-                font-weight: bold;
-                font-size: 0.9em;
             }
 
-            p {
-                margin-top: 10px;
-                font-size: 0.85em;
-                text-align: justify;
-                line-height: 1.4;
+            .card:hover {
+                transform: scale(1.1);
+                box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4);
+                z-index: 10;
+            }
+
+            .card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(calc(-1 * (var(--card-width) + var(--gap)) * var(--total-cards)));
+                }
             }
         </style>
     </head>
 
 <body>
 
-    <div class="container">
-        <h2>Mi Selección de Películas</h2>
+    <header>
+        <img src="imagenes/with_padding.png" alt="Logo">
+    </header>
 
-        <div class="search-container">
-            <input type="text" id="movieSearch" placeholder="Buscar película o tema..." onkeyup="filterMovies()">
+    <div class="carousel-viewport">
+        <div class="carousel-track">
+            <div class="card"><img src="Origenes.jpg" alt="Pelicula 1"></div>
+            <div class="card"><img src="F&F.jpg" alt="Pelicula 2"></div>
+            <div class="card"><img src="imagenes/turning-red.jpg" alt="Pelicula 3"></div>
+            <div class="card"><img src="Frankenstein.jpg" alt="Pelicula 4"></div>
+            <div class="card"><img src="La_asistenta.jpg" alt="Pelicula 5"></div>
+
+            <div class="card"><img src="Origenes.jpg" alt="Pelicula 1"></div>
+            <div class="card"><img src="F&F.jpg" alt="Pelicula 2"></div>
+            <div class="card"><img src="imagenes/turning-red.jpg" alt="Pelicula 3"></div>
+            <div class="card"><img src="Frankenstein.jpg" alt="Pelicula 4"></div>
+            <div class="card"><img src="La_asistenta.jpg" alt="Pelicula 5"></div>
         </div>
-
-        <section id="movieList">
-
-            <div class="pelicula-item">
-                <img src="Origenes.jpg" alt="I Origins">
-                <details>
-                    <summary>1. Orígenes (I Origins)</summary>
-                    <p>Un biólogo molecular y su compañera descubren evidencias que podrían cambiar la forma en que el
-                        mundo percibe la espiritualidad y la ciencia.</p>
-                </details>
-            </div>
-
-            <div class="pelicula-item">
-                <img src="F&F.jpg" alt="Fast & Furious">
-                <details>
-                    <summary>2. Fast & Furious</summary>
-                    <p>Saga centrada en carreras callejeras, espionaje y el valor de la familia, liderada por Dominic
-                        Toretto.</p>
-                </details>
-            </div>
-
-            <div class="pelicula-item">
-                <a href="Proyecto.html#turning_red"><img src="imagenes/turning-red.jpg" alt="Turning Red"></a>
-                <details>
-                    <summary>3. Red (Turning Red)</summary>
-                    <p>Mei Lee, una niña de 13 años, se convierte en un panda rojo gigante cuando se emociona demasiado.
-                    </p>
-                </details>
-            </div>
-
-            <div class="pelicula-item">
-                <img src="Frankenstein.jpg" alt="Frankenstein">
-                <details>
-                    <summary>4. Frankenstein</summary>
-                    <p>El científico Victor Frankenstein logra dar vida a una criatura creada a partir de restos
-                        humanos.</p>
-                </details>
-            </div>
-
-            <div class="pelicula-item">
-                <img src="La_asistenta.jpg" alt="The Housemaid">
-                <details>
-                    <summary>5. La Asistenta (The Housemaid)</summary>
-                    <p>Thriller psicológico donde una mujer descubre secretos peligrosos al trabajar para una familia
-                        rica.</p>
-                </details>
-            </div>
-
-        </section>
     </div>
 
-    <script>
-        function filterMovies() {
-            const input = document.getElementById('movieSearch');
-            const filter = input.value.toLowerCase();
-            const movieItems = document.querySelectorAll('.pelicula-item');
-
-            movieItems.forEach(item => {
-                const title = item.querySelector('summary').innerText.toLowerCase();
-                const description = item.querySelector('p').innerText.toLowerCase();
-
-                // Si coincide el título o la descripción
-                if (title.includes(filter) || description.includes(filter)) {
-                    item.style.display = "flex";
-                } else {
-                    item.style.display = "none";
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
