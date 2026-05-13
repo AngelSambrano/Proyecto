@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const datosElemento = document.getElementById('datos-peliculas');
     const lista = document.getElementById('movieList');
-    const searchInput = document.getElementById('movieSearch'); 
+    const searchInput = document.getElementById('movieSearch');
 
     if (!datosElemento || !lista) return;
 
     const peliculas = JSON.parse(datosElemento.textContent);
 
-  
+
     function renderMovies(data) {
-        lista.innerHTML = ''; 
+        lista.innerHTML = '';
         data.forEach((peli, index) => {
             const match = peli.puntuacion.match(/\(([^)]+)\)/);
             const nota = match ? match[1] : "0";
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieItems = document.querySelectorAll('.pelicula-item');
 
             movieItems.forEach(item => {
-                const textToSearch = item.innerText.toLowerCase();
-                
-                if (textToSearch.includes(term)) {
+                const title = item.querySelector('h2').textContent.toLowerCase();
+
+                if (title.includes(term)) {
                     item.style.display = "flex";
                 } else {
                     item.style.display = "none";
